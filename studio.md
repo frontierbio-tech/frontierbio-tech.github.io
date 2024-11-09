@@ -5,12 +5,13 @@
 2. User Personas
 3. Workflow Philosophy
 4. Technical Architecture
-5. Data Model
-6. Implementation Methodology
-7. Access Control
-8. Success Metrics
-9. Future Considerations
-10. Glossary
+5. Component Use Cases      
+6. Data Model
+7. Implementation Methodology
+8. Access Control
+9. Success Metrics
+10. Future Considerations
+11. Glossary
 
 ## 1. Vision and Goals
 
@@ -187,7 +188,217 @@ projects/
                 └── processing results
 ```
 
-## 5. Data Model
+
+
+## 4.Component Use Cases
+
+### Annotation Module
+```mermaid
+graph TB
+    subgraph Annotation System
+        direction TB
+        U((User))
+        
+        U --> A[Upload Images]
+        U --> B[View Images]
+        U --> C[Create Annotations]
+        U --> D[Edit Annotations]
+        U --> E[Delete Annotations]
+        U --> F[Export Annotations]
+        
+        A --> A1[Bulk Upload]
+        A --> A2[Single Upload]
+        
+        C --> C1[Draw Polygons]
+        C --> C2[Add Labels]
+        C --> C3[Set Classes]
+        
+        D --> D1[Modify Shapes]
+        D --> D2[Update Labels]
+        D --> D3[Change Classes]
+        
+        F --> F1[Download JSON]
+        F --> F2[Export Statistics]
+    end
+```
+
+### Model Training Module
+```mermaid
+graph TB
+    subgraph Training System
+        direction TB
+        U((User))
+        
+        U --> A[Initiate Training]
+        U --> B[Monitor Progress]
+        U --> C[View History]
+        U --> D[Manage Models]
+        
+        A --> A1[Select Dataset]
+        A --> A2[Configure Parameters]
+        A --> A3[Set Resources]
+        
+        B --> B1[View Status]
+        B --> B2[Check Metrics]
+        B --> B3[View Logs]
+        
+        C --> C1[Past Trainings]
+        C --> C2[Compare Results]
+        C --> C3[Export Reports]
+        
+        D --> D1[Save Models]
+        D --> D2[Delete Models]
+        D --> D3[Share Models]
+    end
+```
+
+### Segmentation and Analysis Module
+```mermaid
+graph TB
+    subgraph Analysis System
+        direction TB
+        U((User))
+        
+        U --> A[Select Model]
+        U --> B[Run Segmentation]
+        U --> C[View Results]
+        U --> D[Export Data]
+        
+        A --> A1[Browse Models]
+        A --> A2[Check Details]
+        A --> A3[Compare Models]
+        
+        B --> B1[Select Images]
+        B --> B2[Set Parameters]
+        B --> B3[Schedule Job]
+        
+        C --> C1[View Visualizations]
+        C --> C2[Check Metrics]
+        C --> C3[Review Analysis]
+        
+        D --> D1[Generate Reports]
+        D --> D2[Export JSON]
+        D --> D3[Save Images]
+    end
+```
+
+### Project Management Module
+```mermaid
+graph TB
+    subgraph Project Management
+        direction TB
+        U((User))
+        
+        U --> A[Manage Projects]
+        U --> B[Handle Users]
+        U --> C[Track Progress]
+        U --> D[Resource Management]
+        
+        A --> A1[Create Project]
+        A --> A2[Edit Settings]
+        A --> A3[Archive Project]
+        
+        B --> B1[Add Members]
+        B --> B2[Set Permissions]
+        B --> B3[Remove Users]
+        
+        C --> C1[View Timeline]
+        C --> C2[Check Status]
+        C --> C3[Generate Reports]
+        
+        D --> D1[Allocate Storage]
+        D --> D2[Manage GPU Usage]
+        D --> D3[Monitor Resources]
+    end
+```
+
+### User Interaction Flows
+
+#### Annotation Flow
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant S as System
+    participant D as Database
+    
+    U->>S: Upload Images
+    S->>D: Store Images
+    S->>S: Generate Tiles
+    S->>U: Display Interface
+    
+    U->>S: Create Annotation
+    S->>D: Save Annotation
+    
+    U->>S: Edit Annotation
+    S->>D: Update Data
+    
+    U->>S: Request Export
+    S->>D: Fetch Data
+    S->>U: Provide Export
+```
+
+#### Training Flow
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant S as System
+    participant G as GPU Server
+    participant D as Database
+    
+    U->>S: Request Training
+    S->>D: Check Resources
+    S->>G: Initialize Training
+    
+    loop Training Process
+        G->>S: Update Progress
+        S->>U: Show Status
+    end
+    
+    G->>S: Complete Training
+    S->>D: Save Model
+    S->>U: Notify Completion
+```
+
+#### Analysis Flow
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant S as System
+    participant M as Model
+    participant D as Database
+    
+    U->>S: Select Model
+    U->>S: Upload Target Images
+    S->>M: Run Segmentation
+    M->>S: Return Results
+    S->>D: Store Results
+    S->>U: Display Analysis
+```
+
+### Component Permissions Matrix
+
+| Component | Admin | Professor | Research Assistant | Student |
+|-----------|-------|-----------|-------------------|---------|
+| **Annotation** |
+| Upload Images | ✓ | ✓ | ✓ | ✓ |
+| Create Annotations | ✓ | ✓ | ✓ | ✓ |
+| Edit Any Annotation | ✓ | ✓ | ✓ | ⨯ |
+| Delete Annotations | ✓ | ✓ | ⨯ | ⨯ |
+| **Training** |
+| Initialize Training | ✓ | ✓ | ✓ | ⨯ |
+| View Progress | ✓ | ✓ | ✓ | ✓ |
+| Modify Parameters | ✓ | ✓ | ✓ | ⨯ |
+| Delete Models | ✓ | ✓ | ⨯ | ⨯ |
+| **Analysis** |
+| Run Segmentation | ✓ | ✓ | ✓ | ✓ |
+| Export Results | ✓ | ✓ | ✓ | ✓ |
+| Modify Analysis | ✓ | ✓ | ✓ | ⨯ |
+| Delete Results | ✓ | ✓ | ⨯ | ⨯ |
+
+
+
+
+## 6. Data Model
 
 ### User Management
 ```mermaid
@@ -273,7 +484,7 @@ erDiagram
     }
 ```
 
-## 6. Implementation Methodology
+## 7. Implementation Methodology
 
 ### Phase 1: Foundation (Weeks 1-4)
 - Basic platform setup
@@ -299,7 +510,7 @@ erDiagram
 - Additional learning resources
 - Extended tool support
 
-## 7. Access Control
+## 8. Access Control
 
 ### Role-Based Access Control Matrix
 
@@ -323,7 +534,7 @@ graph TD
     F --> I[Create Projects]
 ```
 
-## 8. Success Metrics
+## 9. Success Metrics
 
 ### Learning Metrics
 - Concept understanding
@@ -343,7 +554,7 @@ graph TD
 - Learning outcome achievements
 - User satisfaction scores
 
-## 9. Future Considerations
+## 10. Future Considerations
 
 ### Technical Enhancements
 1. Integration with Learning Management Systems (LMS)
@@ -363,7 +574,7 @@ graph TD
 3. Backup and recovery systems
 4. Performance monitoring tools
 
-## 10. Glossary
+## 11. Glossary
 
 | Term | Definition |
 |------|------------|
