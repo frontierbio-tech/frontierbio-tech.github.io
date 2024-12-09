@@ -142,3 +142,99 @@ This workflow encompasses several key stages:
    - System validates configuration
    - Resources are allocated
    - Training data is prepared
+
+2. **Training Execution**
+   - GPU resources are initialized
+   - Training process begins
+   - Real-time progress monitoring
+   - Automatic checkpointing
+
+3. **Results Management**
+   - Model artifacts are saved
+   - Results are transferred
+   - Resources are released
+   - Analysis is presented
+
+### Inference Process
+
+The inference workflow demonstrates how students apply their trained models:
+
+```mermaid
+sequenceDiagram
+    participant Student
+    participant Platform
+    participant Storage
+    participant GPU
+
+    Student->>Platform: Upload Image
+    Note over Platform: Configure Analysis
+    
+    Platform->>Storage: Prepare Data
+    Platform->>GPU: Run Analysis
+    
+    GPU->>GPU: Process Image
+    GPU->>Storage: Save Results
+    
+    Storage->>Platform: Return Results
+    Platform->>Student: Display Analysis
+```
+
+The inference process includes several stages:
+
+1. **Input Processing**
+   - Image upload and validation
+   - Resolution configuration
+   - Format conversion
+   - Data preparation
+
+2. **Inference Execution**
+   - Model loading
+   - GPU allocation
+   - Image processing
+   - Result generation
+
+3. **Results Handling**
+   - Data validation
+   - Results transfer
+   - Resource cleanup
+   - Analysis presentation
+
+### Storage Architecture
+
+The platform implements an efficient storage system that balances performance with resource utilization:
+
+```mermaid
+graph TB
+    A[Storage System] --> B[Local Storage]
+    A --> C[Cloud Storage]
+    
+    B --> B1[Active Projects]
+    B --> B2[Cached Models]
+    
+    C --> C1[Training Data]
+    C --> C2[Computation Results]
+    
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+```
+
+This architecture incorporates several key components:
+
+1. **Local Storage Layer**
+   - Manages active project data
+   - Stores frequently used models
+   - Handles temporary computations
+   - Provides fast access to common resources
+
+2. **Cloud Storage Layer**
+   - Stores training datasets
+   - Manages computation results
+   - Handles temporary data
+   - Enables efficient cleanup
+
+3. **Caching Strategy**
+   - Maintains frequently used models
+   - Optimizes data access
+   - Reduces transfer overhead
+   - Improves response times
+
+This comprehensive system enables institutions to provide advanced AI education while maintaining efficient resource utilization and ensuring a smooth learning experience for students.
