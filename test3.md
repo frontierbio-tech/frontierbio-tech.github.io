@@ -1,44 +1,39 @@
-# AI Learning Platform: Technical Implementation and Educational Workflows
+
+# AI Learning Platform: Technical Overview and Educational Workflow
 
 ## Executive Summary
 
-The AI Learning Platform represents a transformative approach to artificial intelligence education, bridging the crucial gap between theoretical knowledge and practical implementation. Our platform enables students to experience the complete AI development lifecycle while providing educational institutions with a scalable, efficient solution for hands-on AI education. By combining a sophisticated web application with powerful GPU computing resources, we create an environment where students can develop real-world AI skills through practical application.
+Our AI Learning Platform provides a hands-on environment for students to gain practical, real-world experience in artificial intelligence development. By blending an intuitive web interface, automated data preparation, annotation tools, and powerful GPU computing, the platform helps learners understand the full AI development lifecycle—from preparing raw data to training, evaluating, and deploying models. With its scalable, efficient infrastructure, educational institutions can offer students a modern and practice-oriented AI learning experience.
 
 ## Understanding the AI Development Journey
 
-The platform guides students through the complete process of AI development, mirroring real-world workflows while providing educational support at each step. This comprehensive approach ensures students understand not just the theory, but the practical implementation of AI systems.
+The platform closely mirrors how AI professionals work, guiding students through every stage of the development process while ensuring they have the support they need. By working directly with real data, students gain insights into the challenges and best practices of building AI solutions.
 
 ### Data Preparation and Image Processing
 
-Students begin their AI journey with raw image data, learning how to prepare real-world data for AI processing. When students upload their images, the system automatically processes them through a tiling system, breaking larger images into manageable pieces while maintaining spatial relationships. This process teaches fundamental concepts about data preparation and its impact on AI system performance.
-
-During this phase, students develop a practical understanding of image resolution and its effects on AI processing. They learn to manage large datasets efficiently and recognize the critical relationship between data quality and model performance. This hands-on experience with data preparation establishes a strong foundation for more advanced AI concepts.
+Students start by uploading raw images. The platform then automatically processes these images into smaller “tiles,” making it easier to handle large datasets and maintain spatial relationships within the data. This experience helps students appreciate the importance of proper data preparation, resolution choices, and data quality in building successful AI models.
 
 ### The Art of Annotation
 
-The annotation phase represents a critical step where students develop a deep understanding of what they want their AI models to learn. Using an integrated annotation tool based on Django Labeller, students mark important features in their images, creating the training data that will guide their AI models' learning process.
-
-As students annotate their images, they begin to understand the connection between human perception and machine learning. They learn to maintain consistency in their labeling approach and recognize how annotation quality directly impacts model performance. This direct interaction with the data helps solidify the connection between human understanding and machine learning capabilities.
+Next, students use a built-in annotation tool, based on Django Labeller, to highlight the features in their images that they want the model to learn. This step makes the connection between human perception and machine learning clear. By learning to label data consistently and accurately, students see firsthand how their annotations influence the quality and reliability of the final model.
 
 ### Creating Training Sets
 
-After preparing and annotating their images, students learn to organize their data into training sets. This phase teaches crucial concepts about data organization and model training. Students can create multiple training sets, experimenting with different data combinations to understand how their choices impact model performance.
-
-This process helps students understand data distribution and balance, the importance of diverse examples, and how to structure data for effective learning. They develop practical skills in organizing and validating their datasets, essential knowledge for real-world AI development.
+After annotation, students group their labeled images into training sets. This teaches them how to balance datasets, ensure diversity, and structure data so that models can learn effectively. By experimenting with different training sets, they discover how the makeup of a dataset can impact overall model performance.
 
 ### The Training Process
 
-The training phase represents the moment where theory meets practice. Students configure and initiate training jobs using powerful GPU resources, all managed seamlessly by the platform. During training, students observe real-time progress, monitor performance metrics, and understand resource utilization. This phase demystifies the AI training process, showing students exactly how their annotated data transforms into a functional model.
+When students are ready to train their models, they initiate training jobs on powerful GPU resources. They monitor progress in real time, seeing how computational power, resource management, and proper configuration come together to transform annotated images into functional AI models. This stage helps students understand the complexity of training and the factors that influence model outcomes.
 
 ### Analysis and Inference
 
-In the final phase, students apply their trained models to new images, completing the AI development cycle. This phase brings everything together, demonstrating how their careful work in previous stages contributes to a functional AI system. Students test their models on new images, analyze performance, and extract meaningful results, gaining valuable insights into real-world AI deployment.
+Finally, students apply their trained models to new images to test performance and accuracy. This closing loop shows them the end-to-end process in action, allowing them to interpret results, troubleshoot shortcomings, and learn how fine-tuning and adjustments can improve outcomes. Seeing the entire pipeline come to life helps them understand what it takes to deploy AI in real-world scenarios.
 
 ## Technical Implementation
 
-### Complete Workflow Progression
+### Workflow Overview
 
-The platform implements a structured workflow that guides users through each phase of AI development:
+The platform’s workflow is carefully structured, leading students through each step from project creation to results analysis:
 
 ```mermaid
 graph TD
@@ -52,11 +47,11 @@ graph TD
     H --> I[Results & Reports]
 ```
 
-Each step in this workflow is carefully orchestrated across our system components, ensuring efficient resource utilization while maintaining an optimal learning experience.
+Each phase is backed by a robust technical foundation that ensures users get immediate feedback while complex processing happens behind the scenes.
 
 ### System Architecture
 
-The platform's architecture distributes tasks across appropriate computing resources based on their requirements:
+To handle diverse tasks—ranging from quick web requests to intensive GPU training—the platform uses a distributed architecture:
 
 ```mermaid
 graph TB
@@ -82,37 +77,26 @@ graph TB
     end
 ```
 
-This architecture ensures that each type of processing occurs on the most appropriate resources:
+#### Main Server
+Handles project management, user interactions, data preprocessing, and result presentation.
 
-The local server handles operations that require rapid response and moderate computing power:
-- Project management and user interface operations
-- Image tiling and preprocessing
-- Data validation and preparation
-- Result compilation and presentation
-
-The GPU-enabled virtual machines manage computationally intensive tasks:
-- Neural network training
-- Model inference and analysis
-- Complex mathematical computations
-- Performance-critical operations
+#### GPU Cluster
+Takes on computationally heavy tasks like model training and inference, using dedicated GPU resources for maximum efficiency.
 
 ### Computing Infrastructure
 
-The platform utilizes two distinct types of computing resources:
+We use two main resource types to balance responsiveness with computational muscle:
 
-Local Server Resources:
-- 16 vCores for processing
-- 16 GB System Memory
-- 160 GB Storage
-- Handles web interface and data preparation
+#### Local Server:
+- 16 vCores, 16 GB RAM, 160 GB storage
+- Manages data preparation, interface, and coordination tasks.
 
-GPU-Enabled Virtual Machines:
-- Processing Power: 13 CPU cores
-- System Memory: 40 GiB RAM
-- GPU: NVIDIA Tesla V100S with 32GB GPU Memory
-- 130 TeraFLOPS AI Performance
+#### GPU-Enabled Virtual Machines:
+- 13 CPU cores, 40 GiB RAM
+- NVIDIA Tesla V100S with 32GB GPU memory (130 TFLOPS AI performance)
+- Focused on training and inference workloads that need heavy computing power.
 
-Our custom Docker image (ghcr.io/mupacif/axons-ovh:latest) encapsulates the complete AI pipeline, ensuring consistent environments and optimal resource utilization across all deployments.
+All components run in a standardized environment (our Docker image: `ghcr.io/mupacif/axons-ovh:latest`), ensuring consistent performance and reliability.
 
 ### Training Process Implementation
 
@@ -123,24 +107,22 @@ sequenceDiagram
     participant Storage
     participant GPU
 
-    Student->>Platform: Configure Training
-    Note over Platform: Prepare Training Data
+    Student->>Platform: Start Training
+    Note over Platform: Prepare Data & Assign GPU Resources
     
     Platform->>Storage: Upload Dataset
-    Platform->>GPU: Initialize Training
+    Platform->>GPU: Begin Model Training
     
-    loop Training Process
-        GPU->>GPU: Process Batch
-        GPU->>Platform: Report Progress
-        Platform->>Student: Show Metrics
+    loop Training Loop
+        GPU->>GPU: Process Batches
+        GPU->>Platform: Send Metrics
+        Platform->>Student: Display Progress & Performance
     end
     
-    GPU->>Storage: Save Model
-    Storage->>Platform: Transfer Results
-    Platform->>Student: Present Analysis
+    GPU->>Storage: Save Trained Model
+    Storage->>Platform: Deliver Results
+    Platform->>Student: Show Analysis & Metrics
 ```
-
-When students initiate training, the system orchestrates a complex sequence of operations across multiple components. The platform handles data preparation, GPU resource allocation, and model training while providing real-time feedback to students.
 
 ### Inference Implementation
 
@@ -151,21 +133,19 @@ sequenceDiagram
     participant Storage
     participant GPU
 
-    Student->>Platform: Upload Image
-    Note over Platform: Configure Analysis
+    Student->>Platform: Upload Image for Inference
+    Note over Platform: Prepare Image for Model
     
-    Platform->>Storage: Prepare Data
-    Platform->>GPU: Run Analysis
+    Platform->>Storage: Retrieve Model/Data
+    Platform->>GPU: Run Inference
     
-    GPU->>GPU: Process Image
-    GPU->>Storage: Save Results
+    GPU->>GPU: Analyze & Process
+    GPU->>Storage: Store Inference Results
     
-    Storage->>Platform: Return Results
-    Platform->>Student: Display Analysis
+    Storage->>Platform: Return Processed Output
+    Platform->>Student: Present Analysis & Predictions
 ```
-
-The inference system enables efficient model application and result analysis. This streamlined workflow allows students to focus on understanding model performance and interpreting results while the platform manages all technical complexities.
 
 ## Conclusion
 
-The AI Learning Platform provides a comprehensive solution for modern AI education, combining powerful computing resources with an intuitive learning interface. Its implementation of industry-standard tools and workflows, supported by high-performance GPU computing, enables universities to deliver practical, hands-on AI education at scale. Through careful attention to both educational needs and technical implementation, the platform creates an environment where students can develop real-world AI skills while institutions maintain efficient resource utilization.
+Our AI Learning Platform offers a full-spectrum, hands-on learning experience for modern AI education. By integrating data handling, annotation, training, and inference in one seamless solution, students gain a true-to-life understanding of developing and deploying AI systems. Educators and institutions benefit from scalable infrastructure, industry-standard tools, and a straightforward workflow that prepares students for the demands of real-world AI projects.
