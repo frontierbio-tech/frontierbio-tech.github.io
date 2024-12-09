@@ -1,8 +1,8 @@
-# AI Learning Platform: Bridging Theory and Practice in AI Education
+# AI Learning Platform: Comprehensive Technical Documentation
 
 ## Executive Summary
 
-The AI Learning Platform represents a significant advancement in artificial intelligence education, providing universities with a powerful tool to bridge the gap between theoretical knowledge and practical implementation. The platform combines enterprise-grade GPU computing resources with an intuitive educational interface, enabling students to gain hands-on experience with real-world AI development workflows.
+The AI Learning Platform represents an innovative approach to artificial intelligence education, bridging the gap between theoretical knowledge and practical implementation. By combining powerful computing resources with an intuitive educational interface, we provide students with hands-on experience in real-world AI development while giving institutions the flexibility and efficiency of cloud-based GPU computing.
 
 ## Educational Context and Impact
 
@@ -37,55 +37,11 @@ The platform guides students through a comprehensive AI development process:
    - Result analysis
    - Performance metrics
 
-### Computing Infrastructure
-
-Our platform utilizes powerful GPU-enabled virtual machines for intensive computations:
-
-**GPU-Enabled Virtual Machine Specifications:**
-- Processing Power: 13 CPU cores
-- System Memory: 40 GiB RAM
-- GPU: NVIDIA Tesla V100S
-  - 32GB GPU Memory
-  - 130 TeraFLOPS AI Performance
-  - Designed for deep learning workloads
-
-The platform uses our custom Docker image (ghcr.io/mupacif/axons-ovh:latest) which encapsulates all the necessary AI tools and libraries. This image:
-- Provides consistent development environments
-- Includes optimized deep learning frameworks
-- Supports both training and inference workflows
-- Enables efficient resource utilization
-
-The combination of powerful GPU resources and optimized software enables students to work with real-world scale AI projects while learning fundamental concepts through practical application.
-
-### Learning Outcomes
-
-The platform enables students to develop crucial skills through practical experience:
-
-1. Understanding of complete AI workflows
-2. Experience with data preparation and annotation
-3. Practical model training and optimization
-4. Real-world problem-solving abilities
-5. Familiarity with industry-standard tools
-
 ## System Architecture and Implementation
 
-### Current Infrastructure
+### Core Architecture
 
-The platform operates on a hybrid infrastructure combining local computing resources and on-demand GPU capabilities:
-
-**Local Server Resources**
-- vCores: 16
-- Memory: 16 GB
-- Storage: 160 GB
-- Purpose: Handling web interface, data preparation, and coordination
-
-**On-Demand GPU Resources**
-- CPU: 13 cores
-- RAM: 40 GiB
-- GPU: 1 x Tesla-V100S
-- Purpose: High-performance computing tasks, model training, and inference
-
-### Workflow Architecture
+The platform's architecture is designed to provide seamless integration between user-facing educational components and powerful computing resources. The system is divided into three main layers that work together to deliver both educational value and computational power:
 
 ```mermaid
 graph TB
@@ -113,13 +69,47 @@ graph TB
     style GPU fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
-## Technical Implementation
+The Educational Interface layer serves as the entry point for students and educators, providing both web-based access and local development tools. This flexibility allows students to choose their preferred working environment while maintaining consistent access to computing resources.
 
-### GPU-Accelerated Learning Workflows
+The Processing Layer coordinates all system operations through the Application Server and Task Management system. It efficiently distributes computing tasks based on educational needs and resource availability.
 
-The platform implements two primary GPU-accelerated workflows essential for AI education:
+The Computing Resources layer combines local processing power for routine tasks with GPU resources for intensive computations, ensuring optimal performance for all types of educational activities.
 
-1. **Model Training Process**
+### Computing Infrastructure
+
+The platform operates on a hybrid infrastructure that combines local computing resources for routine operations with powerful GPU capabilities for intensive computations:
+
+**Local Server Resources**
+- 16 vCores for routine processing
+- 16 GB System Memory
+- 160 GB Storage
+- Handles web interface, data preparation, and coordination
+
+**GPU-Enabled Virtual Machine**
+- Processing Power: 13 CPU cores
+- System Memory: 40 GiB RAM
+- GPU: NVIDIA Tesla V100S
+  - 32GB GPU Memory
+  - 130 TeraFLOPS AI Performance
+  - Designed for deep learning workloads
+
+The platform utilizes a custom Docker image (ghcr.io/mupacif/axons-ovh:latest) that contains:
+- The complete AI training and inference pipeline
+- Optimized deep learning frameworks
+- Resource management tools
+- Automated data handling utilities
+
+This containerized approach ensures:
+- Consistent development environments
+- Optimal resource utilization
+- Streamlined deployment
+- Version control of AI tools
+
+## Technical Workflows
+
+### Training Process
+
+The training process demonstrates the platform's approach to managing complex GPU computations while maintaining an educational focus:
 
 ```mermaid
 sequenceDiagram
@@ -145,128 +135,10 @@ sequenceDiagram
     Platform->>Student: Present Analysis
 ```
 
-2. **Analysis and Inference**
+This workflow encompasses several key stages:
 
-```mermaid
-sequenceDiagram
-    participant Student
-    participant Platform
-    participant Storage
-    participant GPU
-
-    Student->>Platform: Upload Image
-    Note over Platform: Configure Analysis
-    
-    Platform->>Storage: Prepare Data
-    Platform->>GPU: Run Analysis
-    
-    GPU->>GPU: Process Image
-    GPU->>Storage: Save Results
-    
-    Storage->>Platform: Return Results
-    Platform->>Student: Display Analysis
-```
-
-### Resource Utilization
-
-The platform intelligently manages computing resources to provide:
-
-1. **Efficient Processing**
-   - Local servers handle web interface and data preparation
-   - GPU resources allocated only for intensive computations
-   - Automatic resource cleanup after task completion
-
-2. **Scalable Architecture**
-   - Support for multiple simultaneous users
-   - Dynamic resource allocation
-   - Efficient workload distribution
-
-## Educational Workflows
-
-### Practical Learning Path
-
-Students follow a structured path that integrates theoretical knowledge with practical application:
-
-```mermaid
-graph LR
-    A[Theory] --> B[Data Preparation]
-    B --> C[Model Development]
-    C --> D[Analysis]
-    D --> E[Results]
-
-    B1[Understanding Data] --> B
-    C1[AI Concepts] --> C
-    D1[Analytical Skills] --> D
-    
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#f9f,stroke:#333,stroke-width:2px
-```
-
-### Hands-on Components
-
-The platform supports several key educational activities:
-
-1. **Data Preparation**
-   - Image processing and tiling
-   - Data annotation and labeling
-   - Dataset organization
-
-2. **Model Development**
-   - Training configuration
-   - Performance monitoring
-   - Model optimization
-
-3. **Analysis and Application**
-   - Model application
-   - Result analysis
-   - Performance evaluation
-
-## Technical Details
-
-### Processing Capabilities
-
-The platform leverages powerful computing resources:
-
-**Local Processing Server**
-```json
-{
-    "vCores": 16,
-    "Memory": "16 GB",
-    "Storage": "160 GB",
-    "Purpose": "Web interface, data preparation, coordination"
-}
-```
-
-**GPU Computing Resources**
-```json
-{
-    "CPU": "13 cores",
-    "RAM": "40 GiB",
-    "GPU": "Tesla-V100S",
-    "Purpose": "Model training, inference, high-performance computing"
-}
-```
-
-### Storage Architecture
-
-The platform implements an efficient storage system:
-
-```mermaid
-graph TB
-    A[Storage System] --> B[Local Storage]
-    A --> C[Cloud Storage]
-    
-    B --> B1[Active Projects]
-    B --> B2[Cached Models]
-    
-    C --> C1[Training Data]
-    C --> C2[Computation Results]
-    
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-```
-
-## Conclusion
-
-The AI Learning Platform provides a comprehensive solution for modern AI education, combining powerful computing resources with an intuitive learning interface. Its implementation of industry-standard tools and workflows, supported by high-performance GPU computing, enables universities to deliver practical, hands-on AI education at scale.
-
-The platform's architecture ensures efficient resource utilization while providing students with authentic AI development experience. This approach not only enhances learning outcomes but also prepares students for real-world AI development challenges.
+1. **Configuration Phase**
+   - Students set training parameters
+   - System validates configuration
+   - Resources are allocated
+   - Training data is prepared
