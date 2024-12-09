@@ -8,36 +8,54 @@ The AI Learning Platform represents a significant advancement in artificial inte
 
 ### Transforming AI Education
 
-Traditional AI education often faces significant challenges in providing students with practical experience. Many educational institutions struggle with:
+Traditional AI education often faces significant challenges in providing students with practical experience. Our platform transforms how students learn AI by providing a complete, hands-on learning environment that mirrors real-world AI development workflows.
 
-1. Limited access to high-performance computing resources
-2. Difficulties in providing consistent development environments
-3. Challenges in scaling resources for larger classes
-4. Barriers between theoretical concepts and practical application
+### Educational Workflow Overview
 
-Our platform addresses these challenges by providing:
+The platform guides students through a comprehensive AI development process:
 
-```mermaid
-graph TD
-    A[Educational Challenges] --> B[Platform Solutions]
-    
-    B --> C[Resource Access]
-    B --> D[Standardized Environment]
-    B --> E[Scalable Infrastructure]
-    B --> F[Practical Experience]
-    
-    C --> C1[On-demand GPU Computing]
-    C --> C2[No Hardware Investment]
-    
-    D --> D1[Consistent Tools]
-    D --> D2[Industry Standards]
-    
-    E --> E1[Multiple Users]
-    E --> E2[Parallel Processing]
-    
-    F --> F1[Real Projects]
-    F --> F2[Immediate Feedback]
-```
+1. **Image Import and Preparation**
+   Students begin by importing their image data into the platform. The system automatically processes these images through tiling, breaking them into manageable pieces while maintaining their spatial relationships. This step teaches students about data preparation and the importance of proper input formatting for AI systems.
+
+2. **Data Annotation Phase**
+   Using an integrated annotation tool based on Django Labeller, students learn to create high-quality training data. This hands-on experience helps them understand the critical role of data labeling in AI development and the importance of annotation quality for model performance.
+
+3. **Training Set Creation**
+   Students learn to organize their annotated data into training sets, gaining practical experience in dataset curation and understanding the importance of data organization in AI projects. They can create multiple training sets to experiment with different data combinations.
+
+4. **Model Training**
+   The platform handles the complex GPU resource management behind the scenes while students configure and monitor their training processes. They can observe real-time training metrics and learn about:
+   - Model configuration and hyperparameters
+   - Training optimization
+   - Resource utilization
+   - Performance evaluation
+
+5. **Inference and Analysis**
+   Students can apply their trained models to new images, experiencing the full AI development cycle. They learn about:
+   - Model deployment
+   - Inference optimization
+   - Result analysis
+   - Performance metrics
+
+### Computing Infrastructure
+
+Our platform utilizes powerful GPU-enabled virtual machines for intensive computations:
+
+**GPU-Enabled Virtual Machine Specifications:**
+- Processing Power: 13 CPU cores
+- System Memory: 40 GiB RAM
+- GPU: NVIDIA Tesla V100S
+  - 32GB GPU Memory
+  - 130 TeraFLOPS AI Performance
+  - Designed for deep learning workloads
+
+The platform uses our custom Docker image (ghcr.io/mupacif/axons-ovh:latest) which encapsulates all the necessary AI tools and libraries. This image:
+- Provides consistent development environments
+- Includes optimized deep learning frameworks
+- Supports both training and inference workflows
+- Enables efficient resource utilization
+
+The combination of powerful GPU resources and optimized software enables students to work with real-world scale AI projects while learning fundamental concepts through practical application.
 
 ### Learning Outcomes
 
