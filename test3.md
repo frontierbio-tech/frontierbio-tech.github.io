@@ -1,4 +1,4 @@
-# AI Learning Platform: Comprehensive Technical Documentation
+# AI Learning Platform: Technical Implementation and Educational Workflows
 
 ## Executive Summary
 
@@ -36,53 +36,83 @@ In the final phase, students apply their trained models to new images, completin
 
 ## Technical Implementation
 
-### Platform Architecture
+### Complete Workflow Progression
 
-Our platform operates as a modern web application built with Django, integrating specialized components for AI development and educational support. The system combines local computing resources for routine operations with powerful GPU capabilities for intensive computations.
+The platform implements a structured workflow that guides users through each phase of AI development:
+
+```mermaid
+graph TD
+    A[Project Creation] --> B[Image Import]
+    B --> C[Tiling Process]
+    C --> D[Annotation Phase]
+    D --> E[Training Set Creation]
+    E --> F[Model Training]
+    F --> G[Training Monitoring]
+    G --> H[Model Evaluation]
+    H --> I[Results & Reports]
+```
+
+Each step in this workflow is carefully orchestrated across our system components, ensuring efficient resource utilization while maintaining an optimal learning experience.
+
+### System Architecture
+
+The platform's architecture distributes tasks across appropriate computing resources based on their requirements:
 
 ```mermaid
 graph TB
-    subgraph "Educational Interface"
-        UI[User Interface]
-        Tools[Development Tools]
+    Client[Web Browser] --> Caddy[Caddy Server]
+    Caddy --> Django[Django Application]
+    Django --> DB[(PostgreSQL)]
+    Django --> RMQ[RabbitMQ]
+    RMQ --> Celery[Celery Workers]
+    Celery --> LocalProcess[Local Processing]
+    Celery --> RemoteGPU[Remote GPU Training]
+    
+    subgraph "Main Server"
+        Caddy
+        Django
+        DB
+        RMQ
+        Celery
+        LocalProcess
     end
-
-    subgraph "Processing Layer"
-        App[Application Server]
-        Queue[Task Management]
+    
+    subgraph "GPU Cluster"
+        RemoteGPU
     end
-
-    subgraph "Computing Resources"
-        CPU[Local Processing<br/>16 Cores, 16GB RAM]
-        GPU[GPU Processing<br/>Tesla-V100S]
-    end
-
-    UI --> App
-    Tools --> App
-    App --> Queue
-    Queue --> CPU
-    Queue --> GPU
-
-    style GPU fill:#f9f,stroke:#333,stroke-width:2px
 ```
+
+This architecture ensures that each type of processing occurs on the most appropriate resources:
+
+The local server handles operations that require rapid response and moderate computing power:
+- Project management and user interface operations
+- Image tiling and preprocessing
+- Data validation and preparation
+- Result compilation and presentation
+
+The GPU-enabled virtual machines manage computationally intensive tasks:
+- Neural network training
+- Model inference and analysis
+- Complex mathematical computations
+- Performance-critical operations
 
 ### Computing Infrastructure
 
-The platform utilizes two distinct types of computing resources to provide efficient and scalable processing capabilities:
+The platform utilizes two distinct types of computing resources:
 
-Local Server Resources provide the foundation for routine operations:
+Local Server Resources:
 - 16 vCores for processing
 - 16 GB System Memory
 - 160 GB Storage
 - Handles web interface and data preparation
 
-GPU-Enabled Virtual Machines deliver powerful computing capabilities:
+GPU-Enabled Virtual Machines:
 - Processing Power: 13 CPU cores
 - System Memory: 40 GiB RAM
 - GPU: NVIDIA Tesla V100S with 32GB GPU Memory
 - 130 TeraFLOPS AI Performance
 
-The platform employs a custom Docker image (ghcr.io/mupacif/axons-ovh:latest) that encapsulates the complete AI training and inference pipeline, ensuring consistent environments and optimal resource utilization across all deployments.
+Our custom Docker image (ghcr.io/mupacif/axons-ovh:latest) encapsulates the complete AI pipeline, ensuring consistent environments and optimal resource utilization across all deployments.
 
 ### Training Process Implementation
 
@@ -110,7 +140,7 @@ sequenceDiagram
     Platform->>Student: Present Analysis
 ```
 
-The training process demonstrates sophisticated resource management and workflow coordination. When students initiate training, the system handles the complex orchestration of data preparation, GPU resource allocation, and model training. Real-time monitoring provides immediate feedback, allowing students to understand the training process as it unfolds.
+When students initiate training, the system orchestrates a complex sequence of operations across multiple components. The platform handles data preparation, GPU resource allocation, and model training while providing real-time feedback to students.
 
 ### Inference Implementation
 
@@ -134,33 +164,7 @@ sequenceDiagram
     Platform->>Student: Display Analysis
 ```
 
-The inference system enables students to apply their trained models efficiently. The platform manages the entire process from image upload through result presentation, handling all resource allocation and data management automatically. This streamlined workflow allows students to focus on understanding model performance and result interpretation.
-
-### Task Distribution System
-
-The platform employs a sophisticated task distribution system that coordinates all computational processes:
-
-```mermaid
-sequenceDiagram
-    participant App
-    participant Queue
-    participant Worker
-    participant VM
-    participant Storage
-
-    App->>Queue: Submit Task
-    Queue->>Worker: Process Request
-    Worker->>VM: Initialize GPU
-    VM->>Storage: Mount Storage
-    
-    loop Task Execution
-        VM->>Storage: Read/Write Data
-        VM->>Worker: Report Progress
-        Worker->>App: Update Status
-    end
-```
-
-This system ensures efficient resource utilization while maintaining responsive performance for all users. The task distribution mechanism coordinates between different platform components, managing everything from routine data processing to intensive GPU computations.
+The inference system enables efficient model application and result analysis. This streamlined workflow allows students to focus on understanding model performance and interpreting results while the platform manages all technical complexities.
 
 ## Conclusion
 
