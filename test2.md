@@ -2,239 +2,252 @@
 
 ## Executive Summary
 
-The AI Learning Platform represents an innovative approach to artificial intelligence education, bridging the gap between theoretical knowledge and practical implementation. By combining powerful computing resources with an intuitive educational interface, we provide students with hands-on experience in real-world AI development while giving institutions the flexibility and efficiency of cloud-based GPU computing.
+The AI Learning Platform represents a sophisticated educational tool designed to bridge the gap between theoretical artificial intelligence concepts and practical implementation. By combining modern web technologies, powerful GPU computing resources, and an intuitive educational interface, the platform enables students to gain hands-on experience with real-world AI development workflows while providing institutions with a scalable, efficient solution for AI education.
 
-## Educational Context and Impact
+## Platform Architecture
 
-### Transforming AI Education
+### Core Application Framework
 
-Traditional AI education often faces significant challenges in providing students with practical experience. Our platform transforms how students learn AI by providing a complete, hands-on learning environment that mirrors real-world AI development workflows.
+At its heart, the platform is built as a Django web application, leveraging Django's robust framework and extensive ecosystem. This architectural choice provides a solid foundation for handling complex educational workflows while ensuring security, scalability, and maintainability. The Django application manages several crucial aspects of the platform:
 
-### Educational Workflow Overview
+1. **User Management and Authentication**
+   - Role-based access control for students, educators, and administrators
+   - Secure authentication workflows
+   - Permission management for different platform features
+   - Session handling and security
 
-The platform guides students through a comprehensive AI development process:
+2. **Data Models and Database Interactions**
+   - Efficient project organization and management
+   - Training set and model tracking
+   - User progress and activity monitoring
+   - Result storage and analysis
 
-1. **Image Import and Preparation**
-   Students begin by importing their image data into the platform. The system automatically processes these images through tiling, breaking them into manageable pieces while maintaining their spatial relationships. This step teaches students about data preparation and the importance of proper input formatting for AI systems.
-
-2. **Data Annotation Phase**
-   Using an integrated annotation tool based on Django Labeller, students learn to create high-quality training data. This hands-on experience helps them understand the critical role of data labeling in AI development and the importance of annotation quality for model performance.
-
-3. **Training Set Creation**
-   Students learn to organize their annotated data into training sets, gaining practical experience in dataset curation and understanding the importance of data organization in AI projects. They can create multiple training sets to experiment with different data combinations.
-
-4. **Model Training**
-   The platform handles the complex GPU resource management behind the scenes while students configure and monitor their training processes. They can observe real-time training metrics and learn about:
-   - Model configuration and hyperparameters
-   - Training optimization
-   - Resource utilization
-   - Performance evaluation
-
-5. **Inference and Analysis**
-   Students can apply their trained models to new images, experiencing the full AI development cycle. They learn about:
-   - Model deployment
-   - Inference optimization
-   - Result analysis
-   - Performance metrics
-
-## System Architecture and Implementation
-
-### Core Architecture
-
-The platform's architecture is designed to provide seamless integration between user-facing educational components and powerful computing resources. The system is divided into three main layers that work together to deliver both educational value and computational power:
-
-```mermaid
-graph TB
-    subgraph "Educational Interface"
-        UI[User Interface]
-        Tools[Development Tools]
-    end
-
-    subgraph "Processing Layer"
-        App[Application Server]
-        Queue[Task Management]
-    end
-
-    subgraph "Computing Resources"
-        CPU[Local Processing<br/>16 Cores, 16GB RAM]
-        GPU[GPU Processing<br/>Tesla-V100S]
-    end
-
-    UI --> App
-    Tools --> App
-    App --> Queue
-    Queue --> CPU
-    Queue --> GPU
-
-    style GPU fill:#f9f,stroke:#333,stroke-width:2px
-```
-
-The Educational Interface layer serves as the entry point for students and educators, providing both web-based access and local development tools. This flexibility allows students to choose their preferred working environment while maintaining consistent access to computing resources.
-
-The Processing Layer coordinates all system operations through the Application Server and Task Management system. It efficiently distributes computing tasks based on educational needs and resource availability.
-
-The Computing Resources layer combines local processing power for routine tasks with GPU resources for intensive computations, ensuring optimal performance for all types of educational activities.
-
-### Computing Infrastructure
-
-The platform operates on a hybrid infrastructure that combines local computing resources for routine operations with powerful GPU capabilities for intensive computations:
-
-**Local Server Resources**
-- 16 vCores for routine processing
-- 16 GB System Memory
-- 160 GB Storage
-- Handles web interface, data preparation, and coordination
-
-**GPU-Enabled Virtual Machine**
-- Processing Power: 13 CPU cores
-- System Memory: 40 GiB RAM
-- GPU: NVIDIA Tesla V100S
-  - 32GB GPU Memory
-  - 130 TeraFLOPS AI Performance
-  - Designed for deep learning workloads
-
-The platform utilizes a custom Docker image (ghcr.io/mupacif/axons-ovh:latest) that contains:
-- The complete AI training and inference pipeline
-- Optimized deep learning frameworks
-- Resource management tools
-- Automated data handling utilities
-
-This containerized approach ensures:
-- Consistent development environments
-- Optimal resource utilization
-- Streamlined deployment
-- Version control of AI tools
-
-## Technical Workflows
-
-### Training Process
-
-The training process demonstrates the platform's approach to managing complex GPU computations while maintaining an educational focus:
-
-```mermaid
-sequenceDiagram
-    participant Student
-    participant Platform
-    participant Storage
-    participant GPU
-
-    Student->>Platform: Configure Training
-    Note over Platform: Prepare Training Data
-    
-    Platform->>Storage: Upload Dataset
-    Platform->>GPU: Initialize Training
-    
-    loop Training Process
-        GPU->>GPU: Process Batch
-        GPU->>Platform: Report Progress
-        Platform->>Student: Show Metrics
-    end
-    
-    GPU->>Storage: Save Model
-    Storage->>Platform: Transfer Results
-    Platform->>Student: Present Analysis
-```
-
-This workflow encompasses several key stages:
-
-1. **Configuration Phase**
-   - Students set training parameters
-   - System validates configuration
-   - Resources are allocated
-   - Training data is prepared
-
-2. **Training Execution**
-   - GPU resources are initialized
-   - Training process begins
+3. **Web Interface and API Endpoints**
+   - Intuitive user interface for educational workflows
+   - RESTful APIs for worker communication
    - Real-time progress monitoring
-   - Automatic checkpointing
+   - Resource management interfaces
 
-3. **Results Management**
-   - Model artifacts are saved
-   - Results are transferred
-   - Resources are released
-   - Analysis is presented
-
-### Inference Process
-
-The inference workflow demonstrates how students apply their trained models:
-
-```mermaid
-sequenceDiagram
-    participant Student
-    participant Platform
-    participant Storage
-    participant GPU
-
-    Student->>Platform: Upload Image
-    Note over Platform: Configure Analysis
-    
-    Platform->>Storage: Prepare Data
-    Platform->>GPU: Run Analysis
-    
-    GPU->>GPU: Process Image
-    GPU->>Storage: Save Results
-    
-    Storage->>Platform: Return Results
-    Platform->>Student: Display Analysis
-```
-
-The inference process includes several stages:
-
-1. **Input Processing**
-   - Image upload and validation
-   - Resolution configuration
-   - Format conversion
-   - Data preparation
-
-2. **Inference Execution**
-   - Model loading
-   - GPU allocation
-   - Image processing
-   - Result generation
-
-3. **Results Handling**
-   - Data validation
-   - Results transfer
-   - Resource cleanup
-   - Analysis presentation
+4. **Template System and Frontend Integration**
+   - Dynamic content rendering
+   - Interactive educational interfaces
+   - Progress visualization
+   - Real-time feedback systems
 
 ### Storage Architecture
 
-The platform implements an efficient storage system that balances performance with resource utilization:
+The platform utilizes an S3-compatible object storage system that provides scalable, reliable data management for all platform components. This storage architecture offers several key advantages:
 
 ```mermaid
 graph TB
-    A[Storage System] --> B[Local Storage]
-    A --> C[Cloud Storage]
+    A[Django Application] --> B[S3 Storage]
+    C[GPU Workers] --> B
+    D[CPU Workers] --> B
     
-    B --> B1[Active Projects]
-    B --> B2[Cached Models]
-    
-    C --> C1[Training Data]
-    C --> C2[Computation Results]
-    
-    style C fill:#f9f,stroke:#333,stroke-width:2px
+    subgraph "Storage Layers"
+        B --> E[Project Data]
+        B --> F[Training Sets]
+        B --> G[Model Artifacts]
+        B --> H[Temporary Storage]
+    end
 ```
 
-This architecture incorporates several key components:
+The storage system provides:
+1. **Scalable Data Management**
+   - Efficient handling of large datasets
+   - Automatic scaling based on usage
+   - Cost-effective long-term storage
+   - Data lifecycle management
 
-1. **Local Storage Layer**
-   - Manages active project data
-   - Stores frequently used models
-   - Handles temporary computations
-   - Provides fast access to common resources
+2. **Secure Access Control**
+   - Fine-grained permission management
+   - Secure data transfer
+   - Encryption at rest and in transit
+   - Access logging and monitoring
 
-2. **Cloud Storage Layer**
-   - Stores training datasets
-   - Manages computation results
-   - Handles temporary data
-   - Enables efficient cleanup
+3. **Efficient Resource Utilization**
+   - Direct access for GPU workers
+   - Optimized data transfer paths
+   - Automatic cleanup of temporary data
+   - Caching for frequently accessed files
 
-3. **Caching Strategy**
-   - Maintains frequently used models
-   - Optimizes data access
-   - Reduces transfer overhead
-   - Improves response times
+### Computing Infrastructure
 
-This comprehensive system enables institutions to provide advanced AI education while maintaining efficient resource utilization and ensuring a smooth learning experience for students.
+The platform combines local computing resources with powerful GPU-enabled virtual machines to provide a comprehensive computing environment:
+
+1. **Local Processing Servers**
+   - Configuration: 16 vCores, 16 GB RAM, 160 GB Storage
+   - Handles web application hosting
+   - Manages user interactions
+   - Coordinates resource allocation
+   - Processes routine computational tasks
+
+2. **GPU-Enabled Virtual Machines**
+   - Hardware Specifications:
+     - CPU: 13 cores
+     - System Memory: 40 GiB RAM
+     - GPU: NVIDIA Tesla V100S
+       - 32GB GPU Memory
+       - 130 TeraFLOPS AI Performance
+   - Software Configuration:
+     - Custom Docker image (ghcr.io/mupacif/axons-ovh:latest)
+     - Optimized deep learning frameworks
+     - CUDA and cuDNN support
+     - Automated resource management
+
+The GPU virtual machines are dynamically provisioned based on computational demands. Each VM:
+- Mounts S3 storage for direct data access
+- Runs our specialized Docker container
+- Handles either training or inference tasks
+- Automatically cleans up after task completion
+
+## Workflow Implementation
+
+### Task Distribution System
+
+The platform uses a sophisticated task distribution system built on Celery and RabbitMQ:
+
+```mermaid
+sequenceDiagram
+    participant App as Django App
+    participant Queue as RabbitMQ
+    participant Worker as Celery Worker
+    participant VM as GPU VM
+    participant Storage as S3 Storage
+
+    App->>Queue: Submit Task
+    Queue->>Worker: Process Request
+    Worker->>VM: Initialize GPU
+    VM->>Storage: Mount Storage
+    
+    loop Task Execution
+        VM->>Storage: Read/Write Data
+        VM->>Worker: Report Progress
+        Worker->>App: Update Status
+    end
+```
+
+This system enables:
+1. **Efficient Resource Management**
+   - Asynchronous task processing
+   - Automatic worker scaling
+   - Resource optimization
+   - Error handling and recovery
+
+2. **Real-time Monitoring**
+   - Progress tracking
+   - Resource utilization monitoring
+   - Performance metrics
+   - Status updates
+
+### Training Implementation
+
+The training workflow demonstrates the platform's integration of various components:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Django
+    participant Storage
+    participant GPU
+
+    User->>Django: Configure Training
+    Django->>Storage: Prepare Data
+    Django->>GPU: Initialize Training
+    
+    loop Training Process
+        GPU->>Storage: Read Batches
+        GPU->>GPU: Process Data
+        GPU->>Storage: Save Checkpoints
+        GPU->>Django: Update Progress
+        Django->>User: Show Status
+    end
+    
+    GPU->>Storage: Save Model
+    Storage->>Django: Transfer Results
+```
+
+The process includes:
+1. **Preparation Phase**
+   - Configuration validation
+   - Resource allocation
+   - Data preparation
+   - Environment initialization
+
+2. **Execution Phase**
+   - Model training
+   - Progress monitoring
+   - Checkpoint management
+   - Resource optimization
+
+3. **Completion Phase**
+   - Result validation
+   - Resource cleanup
+   - Data transfer
+   - Status updates
+
+### Inference Pipeline
+
+The inference system utilizes the same infrastructure while optimizing for rapid processing:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Django
+    participant Storage
+    participant GPU
+
+    User->>Django: Submit Image
+    Django->>Storage: Upload Image
+    Django->>GPU: Start Inference
+    
+    GPU->>Storage: Load Model
+    GPU->>GPU: Process Image
+    GPU->>Storage: Save Results
+    
+    Storage->>Django: Return Results
+    Django->>User: Display Analysis
+```
+
+Key aspects include:
+1. **Input Processing**
+   - Image validation
+   - Format conversion
+   - Resolution adjustment
+   - Data preparation
+
+2. **GPU Processing**
+   - Model loading
+   - Inference execution
+   - Result generation
+   - Resource management
+
+3. **Result Handling**
+   - Output validation
+   - Data transfer
+   - Analysis generation
+   - Visualization preparation
+
+## Educational Integration
+
+The technical infrastructure supports educational objectives through:
+
+1. **Interactive Learning**
+   - Real-time feedback
+   - Progress visualization
+   - Performance analysis
+   - Resource monitoring
+
+2. **Practical Experience**
+   - Industry-standard tools
+   - Real-world workflows
+   - Professional practices
+   - Performance optimization
+
+3. **Skill Development**
+   - Data preparation
+   - Model training
+   - Result analysis
+   - Resource management
+
+This comprehensive platform provides institutions with a powerful tool for AI education while maintaining efficient resource utilization and ensuring an effective learning experience for students.
