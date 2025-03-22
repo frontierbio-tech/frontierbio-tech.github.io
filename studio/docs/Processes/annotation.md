@@ -5,7 +5,7 @@ sidebar_position: 2
 
 ## Overview
 
-The annotation system in Studio.AI is built on the [Django-Labeller](https://github.com/Britefury/django-labeller) open-source tool, integrated with additional functionality for managing training sets. This document explains how annotation works and how to use training sets to organize your annotated tiles for machine learning.
+The annotation system in Studio is built on the [Django-Labeller](https://github.com/Britefury/django-labeller) open-source tool, integrated with additional functionality for managing training sets. This document explains how annotation works and how to use training sets to organize your annotated tiles for machine learning.
 
 ## Annotation Interface
 

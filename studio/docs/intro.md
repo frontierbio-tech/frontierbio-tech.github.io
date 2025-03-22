@@ -7,7 +7,7 @@ Welcome to Studio, a comprehensive platform designed to introduce students to th
 
 ## Platform Overview
 
-Studio.AI provides an end-to-end solution for applying artificial intelligence to microscopy image analysis. The platform is structured around four key processes:
+Studio provides an end-to-end solution for applying artificial intelligence to microscopy image analysis. The platform is structured around four key processes:
 
 ```mermaid
 graph LR
@@ -105,7 +105,7 @@ flowchart TD
 
 ## Educational Value
 
-Studio.AI is designed with educational goals in mind:
+Studio is designed with educational goals in mind:
 
 - **Hands-on Experience**: Work with real-world AI workflows
 - **Practical Application**: Bridge theoretical concepts with implementation
@@ -114,7 +114,7 @@ Studio.AI is designed with educational goals in mind:
 
 ## Getting Started
 
-To begin using Studio.AI:
+To begin using Studio:
 
 1. **Create a Project**: Set up a workspace for your microscopy analysis
 2. **Upload Images**: Provide source images for tiling and analysis
@@ -124,7 +124,7 @@ Each step has detailed documentation accessible through the sidebar navigation.
 
 ## Technical Foundation
 
-Studio.AI is built on modern technologies:
+Studio is built on modern technologies:
 
 ```mermaid
 flowchart LR
@@ -143,11 +143,11 @@ flowchart LR
 
 ## Example Applications
 
-Studio.AI can be applied to various microscopy analysis tasks:
+Studio can be applied to various microscopy analysis tasks:
 
 - **Neuroanatomy**: Analyze nerve fibers and axon segmentation
 - **Histopathology**: Identify cell structures in tissue samples
 - **Materials Science**: Measure properties of material structures
 - **Biological Imaging**: Quantify features in various biological specimens
 
-Explore the documentation to learn more about each component of the platform and how to use Studio.AI for your microscopy analysis needs.
+Explore the documentation to learn more about each component of the platform and how to use Studio for your microscopy analysis needs.

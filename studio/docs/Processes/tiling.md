@@ -5,7 +5,7 @@ sidebar_position: 1
 
 ## Overview
 
-The tiling process in Studio.AI divides large images into smaller tiles that are more manageable for annotation and processing. This document explains the actual implementation from the `axons-teaching` repository.
+The tiling process in Studio divides large images into smaller tiles that are more manageable for annotation and processing. This document explains the actual implementation from the `axons-teaching` repository.
 
 ## Core Implementation
 
