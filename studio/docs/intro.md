@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
 ---
-# Introduction to Studio.AI
+# Introduction to Studio
 
-Welcome to Studio.AI, a comprehensive platform designed to introduce students to the complete machine learning workflow for microscopy image analysis. This platform guides you through the entire process from data preparation to model application.
+Welcome to Studio, a comprehensive platform designed to introduce students to the complete machine learning workflow for microscopy image analysis. This platform guides you through the entire process from data preparation to model application.
 
 ## Platform Overview
 
