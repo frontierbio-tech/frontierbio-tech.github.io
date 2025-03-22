@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Studio.AI guides you through an entire pipeline: from data preparation and image
+        Studio guides you through an entire pipeline: from data preparation and image
         tiling, to annotation, training, and model application. This end-to-end approach
         ensures you gain a comprehensive understanding of AI-driven microscopy workflows.
       </>
@@ -27,7 +27,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Designed with learning in mind, Studio.AI helps students and researchers
+        Designed with learning in mind, Studio helps students and researchers
         bridge theoretical knowledge with practical, real-world machine learning
         applications for microscopy image analysis.
       </>
@@ -38,7 +38,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Built on modern technologies, Studio.AI leverages GPU acceleration, advanced
+        Built on modern technologies, Studio leverages GPU acceleration, advanced
         segmentation models, and distributed processing to handle large datasets and
         deliver scalable, efficient performance.
       </>
