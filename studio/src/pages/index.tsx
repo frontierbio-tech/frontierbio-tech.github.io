@@ -12,15 +12,30 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className={styles.backgroundVideo}
+      >
+        <source src="/video/output.webm" type="video/webm" />
+      </video>
+      <div className={styles.heroContent}>
+        <Heading 
+          as="h1" 
+          className={clsx('hero__title', styles.heroTitle)}
+        >
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
+          {siteConfig.tagline}
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/intro"
+          >
             Studio Tutorial - 15min ⏱️
           </Link>
         </div>
@@ -34,7 +49,8 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="Description will go into a meta tag in <head />"
+    >
       <HomepageHeader />
       <main>
         <HomepageFeatures />

@@ -5,15 +5,14 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  imagePath: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'End-to-End Machine Learning Workflow',
-    // Replace with your own image or remove the `Svg` prop if not needed.
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    imagePath: '/img/End-to-End.jpg',
     description: (
       <>
         Studio guides you through an entire pipeline: from data preparation and image
@@ -24,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Educational Value',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    imagePath: '/img/educational-value.jpg',
     description: (
       <>
         Designed with learning in mind, Studio helps students and researchers
@@ -35,7 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Powerful Infrastructure',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    imagePath: '/img/modular.jpg',
     description: (
       <>
         Built on modern technologies, Studio leverages GPU acceleration, advanced
@@ -46,7 +45,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Flexible and Modular',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    imagePath: '/img/flexible.jpg',
     description: (
       <>
         Each phase of the workflow—tiling, annotation, training, and analysis—can be
@@ -57,11 +56,16 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, imagePath, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img 
+          src={imagePath} 
+          alt={title} 
+          className={styles.featureSvg} 
+          role="img" 
+        />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
