@@ -8,12 +8,11 @@ const config: Config = {
   title: 'Welcome to AI Image analysis Studio',
   tagline: 'Biomedical images are cool',
   favicon: 'img/favicon.ico',
-  staticDirectories: ['static'],
   // Set the production url of your site here
   url: 'https://studio.frontierbio.tech/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/static/docs/',
+  baseUrl: '/',
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'FrontierBio', // Usually your GitHub org/user name.
@@ -43,21 +42,6 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -128,6 +112,47 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [
+    function customWebpackPlugin() {
+      return {
+        name: 'custom-webpack-plugin',
+        configureWebpack(config, isServer, utils) {
+          if (!isServer) {
+            // Override JS output configuration
+            const jsOutput = {
+              publicPath: '/static/docs/',
+              filename: 'static/docs/js/[name].[contenthash:8].js',
+              chunkFilename: 'static/docs/js/[name].[contenthash:8].chunk.js',
+            };
+  
+      
+  
+            // Add custom rule for image assets
+            config.module.rules.push({
+              test: /\.(png|jpe?g|gif|svg)$/,
+              type: 'asset/resource',
+              generator: {
+                publicPath: '/static/docs/'
+              },
+            });
+  
+            return {
+              optimization: {
+                runtimeChunk: {
+                  name: () => 'runtime.main',
+                },
+              },
+              output: {
+                ...config.output,
+                ...jsOutput,
+              },
+            };
+          }
+          return {};
+        },
+      };
+    },
+  ],
 };
 
 export default config;
