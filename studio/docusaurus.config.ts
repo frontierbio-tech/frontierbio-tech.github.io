@@ -126,15 +126,7 @@ const config: Config = {
             };
   
       
-  
-            // Add custom rule for image assets
-            config.module.rules.push({
-              test: /\.(png|jpe?g|gif|svg)$/,
-              type: 'asset/resource',
-              generator: {
-                publicPath: '/static/docs/'
-              },
-            });
+
   
             return {
               optimization: {
