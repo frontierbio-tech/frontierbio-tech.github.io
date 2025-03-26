@@ -12,7 +12,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'End-to-End Machine Learning Workflow',
-    imagePath: '/img/End-to-End.jpg',
+    imagePath: '/static/docs/img/End-to-End.jpg',
     description: (
       <>
         Studio guides you through an entire pipeline: from data preparation and image
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Educational Value',
-    imagePath: '/img/educational-value.jpg',
+    imagePath: '/static/docs/img/educational-value.jpg',
     description: (
       <>
         Designed with learning in mind, Studio helps students and researchers
@@ -34,7 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Powerful Infrastructure',
-    imagePath: '/img/modular.jpg',
+    imagePath: '/static/docs/img/modular.jpg',
     description: (
       <>
         Built on modern technologies, Studio leverages GPU acceleration, advanced
@@ -45,7 +45,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Flexible and Modular',
-    imagePath: '/img/flexible.jpg',
+    imagePath: '/static/docs/img/flexible.jpg',
     description: (
       <>
         Each phase of the workflow—tiling, annotation, training, and analysis—can be

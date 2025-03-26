@@ -8,13 +8,12 @@ const config: Config = {
   title: 'Welcome to AI Image analysis Studio',
   tagline: 'Biomedical images are cool',
   favicon: 'img/favicon.ico',
-
+  staticDirectories: ['static'],
   // Set the production url of your site here
   url: 'https://studio.frontierbio.tech/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
+  baseUrl: '/static/docs/',
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'FrontierBio', // Usually your GitHub org/user name.
