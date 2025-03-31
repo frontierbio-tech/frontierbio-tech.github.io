@@ -64,7 +64,7 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'right',
           label: 'Access to Plateform',
-          to: '/projects'
+          href: 'https://studio.frontierbio.tech/projects'
         },
       ],
     },
