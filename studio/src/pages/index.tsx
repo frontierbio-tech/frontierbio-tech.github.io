@@ -19,7 +19,7 @@ function HomepageHeader() {
         playsInline 
         className={styles.backgroundVideo}
       >
-        <source src="/docs/video/output.webm" type="video/webm" />
+        <source src="/static/docs/video/output.webm" type="video/webm" />
       </video>
       <div className={styles.heroContent}>
         <Heading 
