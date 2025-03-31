@@ -53,17 +53,18 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Go Back to Studio',
+      title: 'Studio AI',
       logo: {
         alt: 'Studio Ai',
-        src: 'img/logo.svg',
+        src: 'static/docs/img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'right',
-          label: 'Login',
+          label: 'Access to Plateform',
+          to: '/projects'
         },
       ],
     },
